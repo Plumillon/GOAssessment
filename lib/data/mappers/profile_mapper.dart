@@ -5,7 +5,13 @@ import 'package:go_assessment/utils/mapper.dart';
 class ProfileMapper implements Mapper<ProfileDTO, ProfileEntity> {
   @override
   ProfileEntity mapFrom(ProfileDTO from) {
-    return ProfileEntity(name: from.name, avatar: from.image);
+    return ProfileEntity(
+        id: from.id,
+        username: from.username,
+        fullname: from.fullname,
+        email: from.email,
+        phone: from.phone,
+        bio: from.bio);
   }
 
   @override

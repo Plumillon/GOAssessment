@@ -18,11 +18,11 @@ class ProfilesBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(const ProfileState.loading());
 
       var profiles = await _getProfilesUseCase.execute().then((profiles) =>
-          profiles.map((item) => _profileModelMapper.mapFrom(item)));
+          profiles.map((item) => _profileModelMapper.mapFrom(item)).toList());
 
       // Stub it
-      // emit(ProfileState.loaded(profiles: profiles.toList()));
-      emit(ProfileState.loaded(profiles: Stubs.stubProfiles()));
+      emit(ProfileState.loaded(profiles: profiles));
+      //emit(ProfileState.loaded(profiles: Stubs.stubProfiles()));
     });
   }
 }
