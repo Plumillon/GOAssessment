@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_assessment/core/styles.dart';
@@ -108,11 +110,13 @@ class _ProfilesScreenState extends State<ProfilesScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image(
-                // FIXME: avatar UC
-                image: NetworkImage(model.avatar, headers: {
-                  "Auth-Token":
-                      "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
-                }),
+                // FIXME: hardcoded header
+                image: CachedNetworkImageProvider(model.avatar,
+                    headers: {
+                      "Auth-Token":
+                          "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
+                    },
+                    imageRenderMethodForWeb: ImageRenderMethodForWeb.HttpGet),
                 width: 160,
               ),
               Padding(

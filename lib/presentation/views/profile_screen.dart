@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:go_assessment/core/styles.dart';
 import 'package:go_assessment/presentation/models/profile_model.dart';
@@ -30,11 +32,13 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               Image(
-                // FIXME: avatar UC
-                image: NetworkImage(profile.avatar, headers: {
-                  "Auth-Token":
-                      "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
-                }),
+                // FIXME: hardcoded header
+                image: CachedNetworkImageProvider(profile.avatar,
+                    headers: {
+                      "Auth-Token":
+                          "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
+                    },
+                    imageRenderMethodForWeb: ImageRenderMethodForWeb.HttpGet),
                 width: 200,
               ),
               Padding(

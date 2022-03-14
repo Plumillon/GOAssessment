@@ -45,8 +45,6 @@ abstract class NetworkModule {
         baseUrl: 'https://dev.gamers.online',
         connectTimeout: 5000,
         receiveTimeout: 3000,
-        // contentType: 'application/json',
-        // responseType: ResponseType.plain,
         headers: {
           "Auth-Token": "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
         });
