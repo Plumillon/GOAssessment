@@ -11,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(profile.name),
+        title: Text(profile.username),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context, false),
@@ -29,7 +29,14 @@ class ProfileScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset(profile.avatar, height: 200),
+              Image(
+                // FIXME: avatar UC
+                image: NetworkImage(profile.avatar, headers: {
+                  "Auth-Token":
+                      "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
+                }),
+                width: 200,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: Row(

@@ -1,16 +1,24 @@
 class ProfileModel {
-  final String name;
+  final int id;
+  final String username;
+  final String fullname;
+  final String phone;
+  final String email;
+  final String bio;
   final String avatar;
-  String bio = "";
-  int partyGame = 0;
-  int boardGame = 0;
-  int rpg = 0;
-  int videoGame = 0;
+  int partyGame;
+  int boardGame;
+  int rpg;
+  int videoGame;
 
   ProfileModel(
-      {required this.name,
-      required this.avatar,
+      {required this.id,
+      required this.username,
+      required this.fullname,
+      this.phone = "",
+      this.email = "",
       this.bio = "",
+      this.avatar = "",
       this.partyGame = 0,
       this.boardGame = 0,
       this.rpg = 0,

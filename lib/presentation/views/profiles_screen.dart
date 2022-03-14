@@ -17,7 +17,7 @@ class ProfilesScreen extends StatefulWidget {
 
 class _ProfilesScreenState extends State<ProfilesScreen> {
   late ProfilesBloc _profilesBloc;
-  bool _filterOpened = true;
+  bool _filterOpened = false;
 
   @override
   void initState() {
@@ -107,8 +107,12 @@ class _ProfilesScreenState extends State<ProfilesScreen> {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                model.avatar,
+              Image(
+                // FIXME: avatar UC
+                image: NetworkImage(model.avatar, headers: {
+                  "Auth-Token":
+                      "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
+                }),
                 width: 160,
               ),
               Padding(
@@ -169,7 +173,7 @@ class _ProfilesScreenState extends State<ProfilesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    model.name,
+                    model.username,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 20),
                   ),
