@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_assessment/core/styles.dart';
@@ -17,7 +19,7 @@ class ProfilesScreen extends StatefulWidget {
 
 class _ProfilesScreenState extends State<ProfilesScreen> {
   late ProfilesBloc _profilesBloc;
-  bool _filterOpened = true;
+  bool _filterOpened = false;
 
   @override
   void initState() {
@@ -107,8 +109,14 @@ class _ProfilesScreenState extends State<ProfilesScreen> {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                model.avatar,
+              Image(
+                // FIXME: hardcoded header
+                image: CachedNetworkImageProvider(model.avatar,
+                    headers: {
+                      "Auth-Token":
+                          "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
+                    },
+                    imageRenderMethodForWeb: ImageRenderMethodForWeb.HttpGet),
                 width: 160,
               ),
               Padding(
@@ -169,7 +177,7 @@ class _ProfilesScreenState extends State<ProfilesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    model.name,
+                    model.username,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 20),
                   ),

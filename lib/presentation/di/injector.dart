@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_assessment/data/repositories/profile_repository_impl.dart';
 import 'package:go_assessment/domain/repositories/profile_repository.dart';
@@ -36,8 +37,26 @@ abstract class AppModule {
 }
 
 @module
+abstract class NetworkModule {
+  // FIXME: headers hardcoded for testing purpose
+  @lazySingleton
+  Dio get dio {
+    var options = BaseOptions(
+        baseUrl: 'https://dev.gamers.online',
+        connectTimeout: 5000,
+        receiveTimeout: 3000,
+        headers: {
+          "Auth-Token": "14c64d860659104e2dd196315eee43f9170436c533202f568bf27"
+        });
+
+    return Dio(options);
+  }
+}
+
+@module
 abstract class RepositoriesModule {
   @lazySingleton
-  ProfileRepository profileRepository(ProfileRepositoryImpl profileRepositoryImpl) =>
+  ProfileRepository profileRepository(
+          ProfileRepositoryImpl profileRepositoryImpl) =>
       profileRepositoryImpl;
 }
